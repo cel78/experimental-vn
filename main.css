@@ -1,0 +1,213 @@
+@charset "utf-8";
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: black;
+}
+
+#artwork {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+#veil {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    z-index: 2;
+}
+
+#scanEffect {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+#hotspotLayer {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: transparent;
+    outline: none;
+    pointer-events: none;
+    cursor: help;
+}
+
+.hotspot.active {
+    pointer-events: auto;
+    background: transparent;
+    outline: none;
+}
+
+.popover {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+
+    transform:
+        translateX(-50%)
+        translateY(6px);
+
+    width: 200px;
+    box-sizing: border-box;
+    padding: 10px 12px;
+
+    background: #eeeeee;
+    border: 1px solid #777;
+    border-radius: 2px;
+
+    box-shadow:
+        1px 1px 0 #ffffff inset,
+        -1px -1px 0 #aaaaaa inset,
+        3px 3px 8px rgba(0, 0, 0, 0.3);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.35;
+    color: #111;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 120ms ease,
+        transform 120ms ease;
+}
+
+.hotspot.active:hover .popover {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+.popover.grey {
+    background: #eeeeee;
+    color: #111;
+    border-color: #777;
+
+    box-shadow:
+        1px 1px 0 #ffffff inset,
+        -1px -1px 0 #aaaaaa inset,
+        3px 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.popover.red {
+    background: #b9897d;
+    color: white;
+    border-color: #8f3027;
+
+    box-shadow:
+        1px 1px 0 rgba(255, 255, 255, 0.4) inset,
+        -1px -1px 0 #7a2922 inset,
+        3px 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+.popover.black {
+    background: #303030;
+    color: white;
+    border-color: #000;
+
+    box-shadow:
+        1px 1px 0 #666 inset,
+        -1px -1px 0 #111 inset,
+        3px 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.popover-title {
+    margin: -8px -10px 8px -10px;
+    padding: 4px 7px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.popover.grey .popover-title {
+    background: #d4d4d4;
+    color: #111;
+    border-bottom: 1px solid #999;
+}
+
+.popover.red .popover-title {
+    background: #9b392f;
+    color: white;
+    border-bottom: 1px solid #762921;
+}
+
+.popover.black .popover-title {
+    background: #111;
+    color: white;
+    border-bottom: 1px solid #000;
+}
+
+.popover-content {
+    padding: 2px;
+}
+
+.info-window {
+    position: fixed;
+    width: 320px;
+    min-height: 180px;
+    display: none;
+
+    background: rgba(245, 245, 240, 0.97);
+    border: 1px solid black;
+
+    box-shadow:
+        5px 5px 20px
+        rgba(0, 0, 0, 0.35);
+
+    font-family: Arial, Helvetica, sans-serif;
+    z-index: 20;
+}
+
+.window-title {
+    padding: 10px;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    cursor: move;
+    user-select: none;
+}
+
+.window-content {
+    padding: 18px;
+    line-height: 1.4;
+}
+
+.close-button {
+    float: right;
+    border: 0;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+}
+
